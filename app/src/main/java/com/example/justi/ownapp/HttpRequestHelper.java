@@ -13,16 +13,20 @@ import java.net.URL;
 
 public class HttpRequestHelper {
     protected static synchronized String downloadFromServer(String... params) {
+
         String result = "";
         String chosenTag = params[0];
 
-        String urllastfm = "http://ws.audioscrobbler.com/2.0/?method=track.search&track="
-                + chosenTag + "&api_key=862cbe4b25a7e8b3ac882ed37e7f8720&format=json";
+        //String client = "ShmRbvSJj6rAfxSb5K1bd5HLvJv5sbTxlmE8J3h7fByK9mfJ2u4kJ8SPdV5vMVJ7 CLIENT";
+        //String key = "xLL8ulVXRA-c6FSgMJhlLhCt1adiUtOwHxrkkq2X8v1MUs65HzFcV6_tlVNwKxKddSsJy7IhoiVlo5rA_r75YA";
+
+        String token = "hP9UVyGHrlKyRJigLqmxWNnjJSnYIbXPJvem609pzv83VRtY4PUQ-kiRD2hkUao1";
+        String urlgenius = ("http://api.genius.com/search?access_token=" + token + "&q=" + chosenTag);
 
         URL url = null;
 
         try {
-            url = new URL(urllastfm);
+            url = new URL(urlgenius);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

@@ -24,7 +24,7 @@ public class TrackAsyncTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPreExecute() {
-        Toast.makeText(context, "searching for tracks...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "searching for lyrics...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
