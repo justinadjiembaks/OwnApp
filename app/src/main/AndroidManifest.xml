@@ -9,16 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FoundItemsActivity" />
-        <activity android:name=".WholeLyricActivity" />
-        <activity android:name=".RememberedActivity"></activity>
+        <activity
+            android:name=".FoundItemsActivity"
+            android:label="Found Lyrics"/>
+        <activity
+            android:name=".WholeLyricActivity"
+            android:label="Full Lyrics"/>
+        <activity
+            android:name=".RememberedActivity"
+            android:label="Remembered Songs">
+
+        </activity>
     </application>
 
 </manifest>
