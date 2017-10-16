@@ -23,7 +23,7 @@ public class HttpRequestHelper {
         //String key = "xLL8ulVXRA-c6FSgMJhlLhCt1adiUtOwHxrkkq2X8v1MUs65HzFcV6_tlVNwKxKddSsJy7IhoiVlo5rA_r75YA";
 
         String token = "hP9UVyGHrlKyRJigLqmxWNnjJSnYIbXPJvem609pzv83VRtY4PUQ-kiRD2hkUao1";
-        String urlgenius = ("http://api.genius.com/search?access_token=" + token + "&q=" + chosenTag);
+        String urlgenius = ("https://api.genius.com/search?access_token=" + token + "&q=" + chosenTag);
 
         URL url = null;
         try {
@@ -37,16 +37,16 @@ public class HttpRequestHelper {
             try {
                 connect = (HttpURLConnection) url.openConnection();
                 connect.setRequestMethod("GET");
-//
-//                Integer responseCode = connect.getResponseCode();
-//
-//                if (responseCode >= 200 && responseCode < 300) {
-//                    BufferedReader bReader = new BufferedReader(new InputStreamReader(connect.getInputStream()));
-//                    String line;
-//                    while ((line = bReader.readLine()) != null) {
-//                        result += line;
-//                    }
-//                }
+
+                Integer responseCode = connect.getResponseCode();
+
+                if (responseCode >= 200 && responseCode < 300) {
+                    BufferedReader bReader = new BufferedReader(new InputStreamReader(connect.getInputStream()));
+                    String line;
+                    while ((line = bReader.readLine()) != null) {
+                        result += line;
+                    }
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

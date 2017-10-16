@@ -39,27 +39,26 @@ public class TrackAsyncTask extends AsyncTask<String, Integer, String> {
         if (result.length() == 0) {
             Toast.makeText(context, "Error: No data from server", Toast.LENGTH_SHORT).show();
         }
-//        else {
-//            try {
-//                JSONObject trackStreamObj = new JSONObject(result);
-//                JSONObject resultObj = trackStreamObj.getJSONObject("results");
-//                JSONObject trackMatches = resultObj.getJSONObject("trackmatches");
-//                JSONArray tracksObj = trackMatches.getJSONArray("track");
-//
-//                trackData = new FoundLyrics[tracksObj.length()];
-//
-//                // get the track, artist and image url from all the search results
-//                for(int i = 0; i < tracksObj.length(); i++) {
-//                    JSONObject track = tracksObj.getJSONObject(i);
-//                    String full_title = track.getString("full_title");
-//;
-//                    trackData[i] = new FoundLyrics(full_title);
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            this.mainAct.trackStartIntent(trackData);
-//        }
+        else {
+            try {
+                JSONObject trackStreamObj = new JSONObject(result);
+                JSONObject resultObj = trackStreamObj.getJSONObject("response");
+                JSONArray trackMatches = resultObj.getJSONArray("hits");
+                trackData = new FoundLyrics[trackMatches.length()];
+
+                // get the track, artist and image url from all the search results
+                for(int i = 0; i < trackMatches.length(); i++) {
+                    JSONObject track = trackMatches.getJSONObject(i);
+                    JSONObject lyric = track.getJSONObject("result");
+                    String full_title = lyric.getString("full_title");
+
+                    trackData[i] = new FoundLyrics(full_title);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            this.mainAct.trackStartIntent(trackData);
+        }
     }
 }
 

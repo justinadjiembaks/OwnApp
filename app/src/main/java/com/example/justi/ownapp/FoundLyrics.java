@@ -9,7 +9,6 @@ import java.io.Serializable;
 public class FoundLyrics implements Serializable {
     private String full_title;
 
-
     public FoundLyrics(String TheFullTitle) {
         this.full_title = TheFullTitle;
     }
