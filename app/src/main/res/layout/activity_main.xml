@@ -24,5 +24,6 @@
         android:id="@+id/Button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search!"/>
+        android:text="Search!"
+        android:onClick="trackSearch"/>
 </LinearLayout>

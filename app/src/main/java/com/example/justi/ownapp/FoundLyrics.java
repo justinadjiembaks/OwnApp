@@ -7,31 +7,16 @@ import java.io.Serializable;
  */
 
 public class FoundLyrics implements Serializable {
-    private String name, artist, imageURL;
+    private String full_title;
 
 
-    public FoundLyrics(String TheName, String TheArtist, String TheImageURL) {
-        this.name = TheName;
-        this.artist = TheArtist;
-        this.imageURL = TheImageURL;
+    public FoundLyrics(String TheFullTitle) {
+        this.full_title = TheFullTitle;
     }
 
     // Returns the Track name
-    public String getName() {
+    public String getFull_title() {
 
-        return name;
+        return full_title;
     }
-
-    // Returns the Artist
-    public String getArtist() {
-
-        return artist;
-    }
-
-    // Returns the image URL
-    public String getImageURL() {
-
-        return imageURL;
-    }
-
 }

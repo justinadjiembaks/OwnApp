@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class TrackAsyncTask extends AsyncTask<String, Integer, String> {
     Context context;
     MainActivity mainAct;
-    FoundSongs[] trackData;
+    FoundLyrics[] trackData;
 
     public TrackAsyncTask(MainActivity main){
         this.mainAct = main;
@@ -39,37 +39,27 @@ public class TrackAsyncTask extends AsyncTask<String, Integer, String> {
         if (result.length() == 0) {
             Toast.makeText(context, "Error: No data from server", Toast.LENGTH_SHORT).show();
         }
-        else {
-            try {
-                JSONObject trackStreamObj = new JSONObject(result);
-                JSONObject resultObj = trackStreamObj.getJSONObject("results");
-                JSONObject trackMatches = resultObj.getJSONObject("trackmatches");
-                JSONArray tracksObj = trackMatches.getJSONArray("track");
-
-                trackData = new FoundSongs[tracksObj.length()];
-
-                // get the track, artist and image url from all the search results
-                for(int i = 0; i < tracksObj.length(); i++) {
-                    JSONObject track = tracksObj.getJSONObject(i);
-                    String name = track.getString("name");
-                    String artist = track.getString("artist");
-                    JSONArray imageArray = track.getJSONArray("image");
-                    JSONObject imageObj = imageArray.getJSONObject(3);
-                    String imageURL = imageObj.getString("#text");
-                    trackData[i] = new FoundSongs(name, artist, imageURL);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            this.mainAct.trackStartIntent(trackData);
-        }
-
-
-
+//        else {
+//            try {
+//                JSONObject trackStreamObj = new JSONObject(result);
+//                JSONObject resultObj = trackStreamObj.getJSONObject("results");
+//                JSONObject trackMatches = resultObj.getJSONObject("trackmatches");
+//                JSONArray tracksObj = trackMatches.getJSONArray("track");
+//
+//                trackData = new FoundLyrics[tracksObj.length()];
+//
+//                // get the track, artist and image url from all the search results
+//                for(int i = 0; i < tracksObj.length(); i++) {
+//                    JSONObject track = tracksObj.getJSONObject(i);
+//                    String full_title = track.getString("full_title");
+//;
+//                    trackData[i] = new FoundLyrics(full_title);
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            this.mainAct.trackStartIntent(trackData);
+//        }
     }
-
-
-
-
 }
 
