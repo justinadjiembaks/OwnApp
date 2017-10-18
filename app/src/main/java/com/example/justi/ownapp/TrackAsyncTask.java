@@ -14,10 +14,10 @@ import org.json.JSONObject;
 
 public class TrackAsyncTask extends AsyncTask<String, Integer, String> {
     Context context;
-    MainActivity mainAct;
+    SearchActivity mainAct;
     FoundLyrics[] trackData;
 
-    public TrackAsyncTask(MainActivity main){
+    public TrackAsyncTask(SearchActivity main){
         this.mainAct = main;
         this.context = this.mainAct.getApplicationContext();
     }

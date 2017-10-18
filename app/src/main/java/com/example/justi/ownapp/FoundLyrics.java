@@ -9,6 +9,9 @@ import java.io.Serializable;
 public class FoundLyrics implements Serializable {
     private String full_title, name ,title;
 
+    //Default constructor for FB
+    public FoundLyrics(){}
+
     public FoundLyrics(String TheFullTitle,String TheName, String TheTitle) {
         this.full_title = TheFullTitle;
         this.name = TheName;

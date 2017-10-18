@@ -40,6 +40,8 @@ public class WholeLyricActivity extends AppCompatActivity {
         public void savesong(View v){
 
             Intent saveintent = new Intent(getApplicationContext(),RememberedActivity.class);
+            saveintent.putExtra("artist", artist);
+            saveintent.putExtra("song", song);
             startActivity(saveintent);
             finish();
         }
