@@ -1,16 +1,26 @@
 package com.example.justi.ownapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 public class FoundItemsActivity extends AppCompatActivity {
+
+    private FirebaseAuth authTest;
+    private FirebaseAuth.AuthStateListener authStateListenerTest;
+    private static final String TAG = "firebase_test";
+
     FoundLyrics [] songArray;
     ListView listView;
     ArrayList<String> fulltitleArray = new ArrayList<String>();
@@ -25,6 +35,8 @@ public class FoundItemsActivity extends AppCompatActivity {
 
         // Initialize views
         listView = (ListView) findViewById(R.id.list_view);
+
+        setListener();
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -69,5 +81,30 @@ public class FoundItemsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void setListener(){
+
+        authStateListenerTest = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                if (user != null) {
+                    //User is singed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in: " + user.getUid());
+                }else{
+                    // User is signet out
+                    Log.d(TAG,"onAuthStateChanged:signed_out");
+                    goToMain();
+                }
+            }
+        };
+    }
+
+    public void goToMain(){
+        Intent Main = new Intent(this, MainActivity.class);
+        startActivity(Main);
+        finish();
     }
 }
