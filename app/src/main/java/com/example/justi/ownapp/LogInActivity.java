@@ -49,29 +49,34 @@ public class LogInActivity extends AppCompatActivity {
         email1 = et1mail.getText().toString();
         password1 = et1password.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email1, password1)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("Succesful", "signInWithEmail:onComplete:" + task.isSuccessful());
+        if (email1.isEmpty() || password1.isEmpty()){
+            Toast.makeText(LogInActivity.this, "Email and/or Password is/are not filled in" ,
+                    Toast.LENGTH_LONG).show();
+        }else {
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w("Logging in Failed", "signInWithEmail:failed", task.getException());
-                            Toast.makeText(LogInActivity.this, "Failed",
-                                    Toast.LENGTH_SHORT).show();
-                        } else{
-                            Toast.makeText(LogInActivity.this, "Succesfuly logged in as " + email1,
-                                    Toast.LENGTH_SHORT).show();
-                            searchscreen();
+            mAuth.signInWithEmailAndPassword(email1, password1)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d("Succesful", "signInWithEmail:onComplete:" + task.isSuccessful());
+
+                            // If sign in fails, display a message to the user. If sign in succeeds
+                            // the auth state listener will be notified and logic to handle the
+                            // signed in user can be handled in the listener.
+                            if (!task.isSuccessful()) {
+                                Log.w("Logging in Failed", "signInWithEmail:failed", task.getException());
+                                Toast.makeText(LogInActivity.this, "Failed",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LogInActivity.this, "Succesfuly logged in as " + email1,
+                                        Toast.LENGTH_SHORT).show();
+                                searchscreen();
+                            }
+
+                            // ...
                         }
-
-                        // ...
-                    }
-                });
-
+                    });
+        }
     }
     public void searchscreen(){
 

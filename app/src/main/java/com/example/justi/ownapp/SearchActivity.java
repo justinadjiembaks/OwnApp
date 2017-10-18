@@ -61,4 +61,13 @@ public class SearchActivity extends AppCompatActivity {
         this.startActivity(dataIntent);
         finish();
     }
+
+    public void logOut(View view){
+        Intent logoutIntent = new Intent(this,MainActivity.class);
+        startActivity(logoutIntent);
+
+        Toast.makeText(SearchActivity.this, "logged Out",
+                Toast.LENGTH_SHORT).show();
+        finish();
+    }
 }

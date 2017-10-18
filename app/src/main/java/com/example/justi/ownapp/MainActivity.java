@@ -81,28 +81,32 @@ public class MainActivity extends AppCompatActivity {
         email = etemail.getText().toString();
         password = etpassword.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("Create user", "createUserWithEmail:onComplete:" + task.isSuccessful());
+        if (password.length()<6){
+            Toast.makeText(MainActivity.this, "Password must be longer than 5 characters",
+                    Toast.LENGTH_SHORT).show();
+        }else {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d("Create user", "createUserWithEmail:onComplete:" + task.isSuccessful());
 
 
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Created New User Failed",
-                                    Toast.LENGTH_SHORT).show();
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Created New User Failed",
+                                        Toast.LENGTH_SHORT).show();
 
-                        } else {
-                            Toast.makeText(MainActivity.this, "Created user " + email,
-                                    Toast.LENGTH_SHORT).show();
-                            goToLogIn1();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Created user " + email,
+                                        Toast.LENGTH_SHORT).show();
+                                goToLogIn1();
 
+                            }
+
+                            // ...
                         }
-
-                        // ...
-                    }
-                });
-
+                    });
+        }
 
     }
 }

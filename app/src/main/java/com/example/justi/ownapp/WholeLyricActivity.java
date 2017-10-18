@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class WholeLyricActivity extends AppCompatActivity {
 
@@ -45,6 +46,14 @@ public class WholeLyricActivity extends AppCompatActivity {
             startActivity(saveintent);
             finish();
         }
+
+    public void logOut1(View view){
+        Intent logoutIntent = new Intent(this,MainActivity.class);
+        startActivity(logoutIntent);
+        Toast.makeText(WholeLyricActivity.this, "logged Out",
+                Toast.LENGTH_SHORT).show();
+        finish();
+    }
 
 }
 
