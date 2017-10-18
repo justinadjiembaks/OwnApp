@@ -7,15 +7,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class FoundItemsActivity extends AppCompatActivity {
     FoundLyrics [] songArray;
     ListView listView;
-    ArrayList<String> trackArray = new ArrayList<String>();
-    ArrayList<String> lyricsArray = new ArrayList<String>();
+    ArrayList<String> fulltitleArray = new ArrayList<String>();
+    ArrayList<String> nameArray = new ArrayList<String>();
+    ArrayList<String> titleArray = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,9 @@ public class FoundItemsActivity extends AppCompatActivity {
         songArray = (FoundLyrics[]) bundle.getSerializable("data");
 
         for (FoundLyrics lyrics : songArray) {
-            trackArray.add(lyrics.getFull_title());
-            lyricsArray.add(lyrics.getlyrics());
+            fulltitleArray.add(lyrics.getFull_title());
+            nameArray.add(lyrics.getTheName());
+            titleArray.add(lyrics.getTheTitle());
         }
 
         makeTrackAdapter();
@@ -40,7 +42,7 @@ public class FoundItemsActivity extends AppCompatActivity {
 
     public void makeTrackAdapter(){
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>
-                (this,android.R.layout.simple_list_item_1,android.R.id.text1,trackArray);
+                (this,android.R.layout.simple_list_item_1,android.R.id.text1, fulltitleArray);
 
         listView = (ListView) findViewById(R.id.list_view);
         assert listView != null;
@@ -52,13 +54,17 @@ public class FoundItemsActivity extends AppCompatActivity {
 
                 // Receive the strings at the clicked position
                 String lv = listView.getItemAtPosition(position).toString();
+                String nameartist = nameArray.get(position);
+                String titlesong = titleArray.get(position);
+
 
                 // Launching new Activity
                 Intent i = new Intent(getApplicationContext(),WholeLyricActivity.class);
 
                 // Sending data to new Activity
                 i.putExtra("listview", lv);
-                i.putExtra("lyrics", lyrics);
+                i.putExtra("artist", nameartist);
+                i.putExtra("song", titlesong);
                 startActivity(i);
             }
         });

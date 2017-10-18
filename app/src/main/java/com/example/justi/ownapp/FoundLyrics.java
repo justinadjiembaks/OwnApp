@@ -7,10 +7,12 @@ import java.io.Serializable;
  */
 
 public class FoundLyrics implements Serializable {
-    private String full_title;
+    private String full_title, name ,title;
 
-    public FoundLyrics(String TheFullTitle) {
+    public FoundLyrics(String TheFullTitle,String TheName, String TheTitle) {
         this.full_title = TheFullTitle;
+        this.name = TheName;
+        this.title = TheTitle;
     }
 
     // Returns the Track name
@@ -18,10 +20,15 @@ public class FoundLyrics implements Serializable {
 
         return full_title;
     }
+    //Returns lyrics
+    public String getTheName(){
+
+        return name;
+    }
 
     //Returns lyrics
-    public String getlyrics(){
+    public String getTheTitle(){
 
-        return getlyrics();
+        return title;
     }
 }

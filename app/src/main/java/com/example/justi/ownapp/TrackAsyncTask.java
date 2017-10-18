@@ -50,9 +50,14 @@ public class TrackAsyncTask extends AsyncTask<String, Integer, String> {
                 for(int i = 0; i < trackMatches.length(); i++) {
                     JSONObject track = trackMatches.getJSONObject(i);
                     JSONObject lyric = track.getJSONObject("result");
-                    String full_title = lyric.getString("full_title");
 
-                    trackData[i] = new FoundLyrics(full_title);
+                    String full_title = lyric.getString("full_title");
+                    String title = lyric.getString("title");
+                    JSONObject primary_artist = lyric.getJSONObject("primary_artist");
+                    String name = primary_artist.getString("name");
+
+                    trackData[i] = new FoundLyrics(full_title, name, title);
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
