@@ -78,6 +78,7 @@ public class FoundItemsActivity extends AppCompatActivity {
                 i.putExtra("artist", nameartist);
                 i.putExtra("song", titlesong);
                 startActivity(i);
+                finish();
             }
         });
 

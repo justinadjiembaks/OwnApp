@@ -18,6 +18,7 @@ public class RememberedActivity extends AppCompatActivity {
     private FirebaseAuth authTest;
     private FirebaseAuth.AuthStateListener authStateListenerTest;
     private static final String TAG = "firebase_test";
+    private  DatabaseReference mDatabase;
 
     FoundLyrics [] favouritesArray;
     ListView listView1;
@@ -28,16 +29,11 @@ public class RememberedActivity extends AppCompatActivity {
 
         setListener();
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         // Initialize views
         listView1 = (ListView) findViewById(R.id.list_view1);
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
     }
 
     public void setListener(){

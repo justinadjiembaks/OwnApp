@@ -13,15 +13,22 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class WholeLyricActivity extends AppCompatActivity {
 
     private FirebaseAuth authTest;
     private FirebaseAuth.AuthStateListener authStateListenerTest;
     private static final String TAG = "firebase_test";
+    private DatabaseReference mDatabase;
 
     String artist;
     String song;
+    int number = 1;
 
     TextView artistText;
     TextView songText;
@@ -34,6 +41,8 @@ public class WholeLyricActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
 
         setListener();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        getFromDB();
 
         artist = intent.getStringExtra("artist");
         song = intent.getStringExtra("song");
@@ -50,9 +59,13 @@ public class WholeLyricActivity extends AppCompatActivity {
             onBackPressed();
     }
         public void savesong(View v){
+
+            // Add to database
+            FavouriteSongs favouriteSongs = new FavouriteSongs(number,artist,song);
+            String numbertext = String.valueOf(number);
+            mDatabase.child("All").child(numbertext).setValue(favouriteSongs);
+
             Intent saveintent = new Intent(getApplicationContext(),RememberedActivity.class);
-            saveintent.putExtra("artist", artist);
-            saveintent.putExtra("song", song);
             startActivity(saveintent);
             finish();
         }
@@ -87,6 +100,24 @@ public class WholeLyricActivity extends AppCompatActivity {
         Intent Main = new Intent(this, MainActivity.class);
         startActivity(Main);
         finish();
+    }
+
+    public void getFromDB(){
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get our object out of the database
+                String numbertext = String.valueOf(number);
+                FavouriteSongs favouriteSongs = dataSnapshot.child("All").child(numbertext).getValue(FavouriteSongs.class);
+                number = favouriteSongs.number + 1;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        mDatabase.addValueEventListener(postListener);
     }
 
 }

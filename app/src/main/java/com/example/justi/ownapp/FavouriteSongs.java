@@ -7,29 +7,31 @@ import java.io.Serializable;
  */
 
 public class FavouriteSongs implements Serializable {
-    private String full_title, name ,title;
+    private String name ,title;
+    public int number;
 
     //Default constructor for FB
     public FavouriteSongs(){}
 
-    public FavouriteSongs(String TheFullTitle,String TheName, String TheTitle) {
-        this.full_title = TheFullTitle;
-        this.name = TheName;
-        this.title = TheTitle;
+    public FavouriteSongs(int Anumber,String Artist, String Song) {
+
+        this.number = Anumber;
+        this.name = Artist;
+        this.title = Song;
     }
 
-    // Returns the Track name
-    public String getFull_title() {
+    //Returns number
+    public int getNumber(){
 
-        return full_title;
+        return number;
     }
-    //Returns lyrics
+    //Returns artist name
     public String getTheName(){
 
         return name;
     }
 
-    //Returns lyrics
+    //Returns song title
     public String getTheTitle(){
 
         return title;
