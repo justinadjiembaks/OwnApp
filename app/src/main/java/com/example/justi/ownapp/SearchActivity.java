@@ -66,7 +66,7 @@ public class SearchActivity extends AppCompatActivity {
         Intent logoutIntent = new Intent(this,MainActivity.class);
         startActivity(logoutIntent);
 
-        Toast.makeText(SearchActivity.this, "logged Out",
+        Toast.makeText(SearchActivity.this, "Logged Out",
                 Toast.LENGTH_SHORT).show();
         finish();
     }

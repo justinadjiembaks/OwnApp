@@ -50,7 +50,7 @@ public class WholeLyricActivity extends AppCompatActivity {
     public void logOut1(View view){
         Intent logoutIntent = new Intent(this,MainActivity.class);
         startActivity(logoutIntent);
-        Toast.makeText(WholeLyricActivity.this, "logged Out",
+        Toast.makeText(WholeLyricActivity.this, "Logged Out",
                 Toast.LENGTH_SHORT).show();
         finish();
     }
