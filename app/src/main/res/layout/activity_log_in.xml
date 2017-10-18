@@ -5,46 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.justi.ownapp.MainActivity">
-
-    <TextView
-        android:id="@+id/textemail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:text="Insert New User Email"/>
+    tools:context="com.example.justi.ownapp.LogInActivity">
 
     <EditText
-        android:id="@+id/editemail"
+        android:id="@+id/editemail1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="email" />
 
     <TextView
-        android:id="@+id/textpassword"
+        android:id="@+id/textpassword1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000000"
         android:text="Insert New Password"/>
 
     <EditText
-        android:id="@+id/editpassword"
+        android:id="@+id/editpassword1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="password"/>
 
     <Button
-        android:id="@+id/newuserbutton"
+        android:id="@+id/newuserbutton1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create New User!"
+        android:text="Log In!"
         android:textColor="#000000"
-        android:onClick="createUser"/>
+        android:onClick="logIn"/>
 
-    <Button
-        android:id="@+id/tosignin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="I Already Have an Account!"
-        android:onClick="goToLogIn"/>
 </LinearLayout>

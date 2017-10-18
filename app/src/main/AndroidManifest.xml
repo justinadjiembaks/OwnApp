@@ -28,8 +28,9 @@
             android:label="Information" />
         <activity
             android:name=".RememberedActivity"
-            android:label="Saved Songs"></activity>
-        <activity android:name=".SearchActivity"></activity>
+            android:label="Saved Songs" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".LogInActivity"></activity>
     </application>
 
 </manifest>
