@@ -18,4 +18,10 @@ public class FoundLyrics implements Serializable {
 
         return full_title;
     }
+
+    //Returns lyrics
+    public String getlyrics(){
+
+        return getlyrics();
+    }
 }

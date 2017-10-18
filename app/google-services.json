@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "144353357211",
+    "firebase_url": "https://ownapp-b0126.firebaseio.com",
+    "project_id": "ownapp-b0126",
+    "storage_bucket": "ownapp-b0126.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144353357211:android:b10874d887186469",
+        "android_client_info": {
+          "package_name": "com.example.justi.ownapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144353357211-5b7d351lm9r7eje94f6bnhvg013qemk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJLNwGWbU9PETT20iWE28TyZRcmdP46Ko"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

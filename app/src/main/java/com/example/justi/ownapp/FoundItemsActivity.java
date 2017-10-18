@@ -15,6 +15,7 @@ public class FoundItemsActivity extends AppCompatActivity {
     FoundLyrics [] songArray;
     ListView listView;
     ArrayList<String> trackArray = new ArrayList<String>();
+    ArrayList<String> lyricsArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class FoundItemsActivity extends AppCompatActivity {
 
         for (FoundLyrics lyrics : songArray) {
             trackArray.add(lyrics.getFull_title());
+            lyricsArray.add(lyrics.getlyrics());
         }
 
         makeTrackAdapter();
@@ -56,6 +58,7 @@ public class FoundItemsActivity extends AppCompatActivity {
 
                 // Sending data to new Activity
                 i.putExtra("listview", lv);
+                i.putExtra("lyrics", lyrics);
                 startActivity(i);
             }
         });
