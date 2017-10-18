@@ -1,8 +1,11 @@
 package com.example.justi.ownapp;
 
 import android.content.Intent;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class WholeLyricActivity extends AppCompatActivity {
@@ -12,6 +15,7 @@ public class WholeLyricActivity extends AppCompatActivity {
 
     TextView artistText;
     TextView songText;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,18 +26,23 @@ public class WholeLyricActivity extends AppCompatActivity {
         artist = intent.getStringExtra("artist");
         song = intent.getStringExtra("song");
 
-        artistText = (TextView)findViewById(R.id.textartist);
-        songText = (TextView)findViewById(R.id.textsong);
+        artistText = (TextView) findViewById(R.id.textartist);
+        songText = (TextView) findViewById(R.id.textsong);
 
         songText.setText("Song: " + song);
         artistText.setText("Artist: " + artist);
+        btn = (Button) findViewById(R.id.savebutton);
     }
 
-    public void saveSong() {
-        Intent intent = new Intent(this, RememberedActivity.class);
-        intent.putExtra("artist", artist);
-        intent.putExtra("song", song);
-        startActivity(intent);
+        public void back(View v){
+            onBackPressed();
     }
+        public void savesong(View v){
+
+            Intent saveintent = new Intent(getApplicationContext(),RememberedActivity.class);
+            startActivity(saveintent);
+            finish();
+        }
+
 }
 

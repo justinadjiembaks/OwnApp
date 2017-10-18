@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "144353357211-9snaof74tlr382869b0b2nm217vh318r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.justi.ownapp",
+            "certificate_hash": "f11a96a83ea487d8ade13344dfb472b88e885fa6"
+          }
+        },
+        {
           "client_id": "144353357211-5b7d351lm9r7eje94f6bnhvg013qemk5.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144353357211-5b7d351lm9r7eje94f6bnhvg013qemk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

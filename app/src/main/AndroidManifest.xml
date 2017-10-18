@@ -25,10 +25,10 @@
             android:label="Found Lyrics"/>
         <activity
             android:name=".WholeLyricActivity"
-            android:label="Full Lyrics"/>
+            android:label="Information"/>
         <activity
             android:name=".RememberedActivity"
-            android:label="Remembered Songs">
+            android:label="Saved Songs">
 
         </activity>
     </application>

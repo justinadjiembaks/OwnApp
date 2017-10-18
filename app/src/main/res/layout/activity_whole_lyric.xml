@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:id="@+id/textartist"
         android:layout_marginTop="10dp"/>
 
@@ -19,17 +19,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:id="@+id/textsong"/>
 
-    <Button
-        android:id="@+id/savebutton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Save Song"
-        android:onClick="saveSong"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/backbutton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Return"
+            android:onClick="back"/>
+
+        <Button
+            android:id="@+id/savebutton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Save Song"
+            android:onClick="savesong"/>
+
+
+
+    </LinearLayout>
 
 </LinearLayout>

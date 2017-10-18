@@ -8,19 +8,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btn;
     EditText textEt;
+    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         btn = (Button) findViewById(R.id.Button1);
         textEt = (EditText) findViewById(R.id.Edittext1);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
     }
 
     // pressing back button closes app
@@ -54,5 +58,6 @@ public class MainActivity extends AppCompatActivity {
         dataIntent.putExtras(bundle);
 
         this.startActivity(dataIntent);
+        finish();
     }
 }
