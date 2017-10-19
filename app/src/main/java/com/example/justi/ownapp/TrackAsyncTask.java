@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 /**
  * Created by justi on 15-10-2017.
+ * This TrackAsyncTask retreives the string result from HttpRequestHelper
+ * and strips the JSON information that the user needs
  */
 
 public class TrackAsyncTask extends AsyncTask<String, Integer, String> {

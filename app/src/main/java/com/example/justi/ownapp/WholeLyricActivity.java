@@ -19,6 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Created by justi on 18-10-2017.
+ * This Activity shows the user information about the song. The intention was to show the
+ * full lyrics here, but this JSON string was only provided in the paid version of the API :(.
+ */
 public class WholeLyricActivity extends AppCompatActivity {
 
     private FirebaseAuth authTest;
@@ -28,7 +33,7 @@ public class WholeLyricActivity extends AppCompatActivity {
 
     String artist;
     String song;
-    int number = 1;
+    int number;
 
     TextView artistText;
     TextView songText;
@@ -53,25 +58,25 @@ public class WholeLyricActivity extends AppCompatActivity {
         songText.setText("Song: " + song);
         artistText.setText("Artist: " + artist);
         btn = (Button) findViewById(R.id.savebutton);
-    }
 
+
+    }
         public void back(View v){
             onBackPressed();
     }
-        public void savesong(View v){
-
+        public void saveSong(View v){
             // Add to database
             FavouriteSongs favouriteSongs = new FavouriteSongs(number,artist,song);
-            String numbertext = String.valueOf(number);
+            Counter newcounter = new Counter(number);
+            String numbertext = String.valueOf(newcounter.counter);
             mDatabase.child("All").child(numbertext).setValue(favouriteSongs);
-
-            Intent saveintent = new Intent(getApplicationContext(),RememberedActivity.class);
-            startActivity(saveintent);
-            finish();
+            mDatabase.child("Here").setValue(newcounter.counter);
+            Intent saveIntent = new Intent(getApplicationContext(),RememberedActivity.class);
+            startActivity(saveIntent);
         }
 
     public void logOut1(View view){
-        Intent logoutIntent = new Intent(this,MainActivity.class);
+        Intent logoutIntent = new Intent(this,LogInActivity.class);
         startActivity(logoutIntent);
         Toast.makeText(WholeLyricActivity.this, "Logged Out",
                 Toast.LENGTH_SHORT).show();
@@ -90,15 +95,15 @@ public class WholeLyricActivity extends AppCompatActivity {
                 }else{
                     // User is signet out
                     Log.d(TAG,"onAuthStateChanged:signed_out");
-                    goToMain();
+                    goToLogin();
                 }
             }
         };
     }
 
-    public void goToMain(){
-        Intent Main = new Intent(this, MainActivity.class);
-        startActivity(Main);
+    public void goToLogin(){
+        Intent Login= new Intent(this, LogInActivity.class);
+        startActivity(Login);
         finish();
     }
 
@@ -108,13 +113,15 @@ public class WholeLyricActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get our object out of the database
-                String numbertext = String.valueOf(number);
-                FavouriteSongs favouriteSongs = dataSnapshot.child("All").child(numbertext).getValue(FavouriteSongs.class);
-                number = favouriteSongs.number + 1;
+                Counter getCounter = dataSnapshot.child("Here").getValue(Counter.class);
+                number = getCounter.counter;
+                number += 1;
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                //Getting the data failed, log a message
+                Log.w(TAG,"Failed to get data from Database", databaseError.toException());
             }
         };
         mDatabase.addValueEventListener(postListener);

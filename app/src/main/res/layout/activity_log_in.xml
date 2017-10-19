@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="com.example.justi.ownapp.LogInActivity">
 
+
+    <TextView
+        android:id="@+id/textemail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:text="Insert Email"/>
+
     <EditText
         android:id="@+id/editemail1"
         android:layout_width="match_parent"
@@ -18,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:text="Insert New Password"/>
+        android:text="Insert Password"/>
 
     <EditText
         android:id="@+id/editpassword1"
@@ -33,5 +41,13 @@
         android:text="Log In!"
         android:textColor="#000000"
         android:onClick="logIn"/>
+
+    <Button
+        android:id="@+id/toregisterbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go to Register Page!"
+        android:textColor="#000000"
+        android:onClick="goToRegister"/>
 
 </LinearLayout>

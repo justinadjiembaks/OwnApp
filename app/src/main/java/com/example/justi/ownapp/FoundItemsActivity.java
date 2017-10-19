@@ -15,6 +15,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
+/**
+ * Created by justi on 18-10-2017.
+ * Activity where the found songs are stored in an array and shown
+ * to the user.
+ */
+
 public class FoundItemsActivity extends AppCompatActivity {
 
     private FirebaseAuth authTest;
@@ -78,7 +84,6 @@ public class FoundItemsActivity extends AppCompatActivity {
                 i.putExtra("artist", nameartist);
                 i.putExtra("song", titlesong);
                 startActivity(i);
-                finish();
             }
         });
 
@@ -108,4 +113,5 @@ public class FoundItemsActivity extends AppCompatActivity {
         startActivity(Main);
         finish();
     }
+
 }

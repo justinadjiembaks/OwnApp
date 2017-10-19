@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 /**
  * Created by justi on 18-10-2017.
+ * Creates an Object where you can store a key, the artist
+ * and songtitle.
  */
 
 public class FavouriteSongs implements Serializable {

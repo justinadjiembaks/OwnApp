@@ -14,6 +14,10 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Created by justi on 18-10-2017.
+ * Activiy that askes the user for input for lyrics from a song
+ */
 public class SearchActivity extends AppCompatActivity {
 
     private FirebaseAuth authTest;
@@ -70,11 +74,10 @@ public class SearchActivity extends AppCompatActivity {
         dataIntent.putExtras(bundle);
 
         this.startActivity(dataIntent);
-        finish();
     }
 
     public void logOut(View view){
-        Intent logoutIntent = new Intent(this,MainActivity.class);
+        Intent logoutIntent = new Intent(this,LogInActivity.class);
         startActivity(logoutIntent);
 
         Toast.makeText(SearchActivity.this, "Logged Out",
@@ -95,15 +98,15 @@ public class SearchActivity extends AppCompatActivity {
                 }else{
                     // User is signet out
                     Log.d(TAG,"onAuthStateChanged:signed_out");
-                    goToMain();
+                    goToLogin();
                 }
             }
         };
     }
 
-    public void goToMain(){
-        Intent Main = new Intent(this, MainActivity.class);
-        startActivity(Main);
+    public void goToLogin(){
+        Intent Login = new Intent(this, LogInActivity.class);
+        startActivity(Login);
         finish();
     }
 }

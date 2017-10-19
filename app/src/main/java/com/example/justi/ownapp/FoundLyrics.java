@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 /**
  * Created by justi on 15-10-2017.
+ * Class where the full title, the songname and artist are stored in
+ * an object.
  */
 
 public class FoundLyrics implements Serializable {

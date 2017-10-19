@@ -15,6 +15,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Created by justi on 18-10-2017.
+ * Activity that allows the user to log in
+ */
 public class LogInActivity extends AppCompatActivity {
 
     String email1, password1;
@@ -82,6 +86,12 @@ public class LogInActivity extends AppCompatActivity {
 
         Intent search = new Intent(this, SearchActivity.class);
         startActivity(search);
+        finish();
+    }
+
+    public void goToRegister(View view){
+        Intent gotoregisterIntent = new Intent(this, MainActivity.class);
+        startActivity(gotoregisterIntent);
         finish();
     }
 }

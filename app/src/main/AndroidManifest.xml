@@ -12,25 +12,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="Julius">
+            android:name=".LogInActivity"
+            android:label="Log in">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".FoundItemsActivity"
-            android:label="Found Lyrics" />
+            android:label="Found Lyrics"
+            android:launchMode="singleInstance"/>
         <activity
             android:name=".WholeLyricActivity"
             android:label="Information" />
         <activity
             android:name=".RememberedActivity"
             android:label="Saved Songs" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".LogInActivity"></activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="Find Song" />/>
+        <activity
+            android:name=".MainActivity"
+            android:label="Register"
+            >
+
+        </activity>
     </application>
 
 </manifest>

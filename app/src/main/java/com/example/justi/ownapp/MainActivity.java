@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * Created by justi on 18-10-2017.
+ * Activity for registering new users
+ */
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
