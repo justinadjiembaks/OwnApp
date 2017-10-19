@@ -18,12 +18,17 @@ import java.net.URL;
 public class HttpRequestHelper {
     protected static synchronized String downloadFromServer(String... params) {
 
+        // sets empty string
         String result = "";
+
+        // gets input from user
         String chosenTag = params[0];
 
+        // token and api site
         String token = "hP9UVyGHrlKyRJigLqmxWNnjJSnYIbXPJvem609pzv83VRtY4PUQ-kiRD2hkUao1";
         String urlGenius = ("https://api.genius.com/search?access_token=" + token + "&q=" + chosenTag);
 
+        // checks if url is correct
         URL url = null;
         try {
             url = new URL(urlGenius);
@@ -32,6 +37,7 @@ public class HttpRequestHelper {
         }
         HttpURLConnection connect;
 
+        // connects url
         if(url != null) {
             try {
                 connect = (HttpURLConnection) url.openConnection();
@@ -39,6 +45,7 @@ public class HttpRequestHelper {
 
                 Integer responseCode = connect.getResponseCode();
 
+                // checks for error message
                 if (responseCode >= 200 && responseCode < 300) {
                     BufferedReader bReader = new BufferedReader(new InputStreamReader(connect.getInputStream()));
                     String line;

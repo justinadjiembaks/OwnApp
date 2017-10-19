@@ -46,6 +46,8 @@ public class LogInActivity extends AppCompatActivity {
             }
         };
     }
+
+    // when log in button is pressed in..
     public void logIn(View view){
 
         EditText et1Email = (EditText) findViewById(R.id.editemail1);
@@ -53,25 +55,26 @@ public class LogInActivity extends AppCompatActivity {
         email1 = et1Email.getText().toString();
         password1 = et1Password.getText().toString();
 
+        // check if password and email is filled in
         if (email1.isEmpty() || password1.isEmpty()){
             Toast.makeText(LogInActivity.this, "Email and/or Password is/are not filled in" ,
                     Toast.LENGTH_LONG).show();
         }else {
-
+            // when filled in checks if password and email are correct
             mAuth.signInWithEmailAndPassword(email1, password1)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Log.d("Succesful", "signInWithEmail:onComplete:" + task.isSuccessful());
 
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
+                            // if not succesful show error message
                             if (!task.isSuccessful()) {
                                 Log.w("Logging in Failed", "signInWithEmail:failed", task.getException());
                                 Toast.makeText(LogInActivity.this, "Failed",
                                         Toast.LENGTH_SHORT).show();
                             } else {
+
+                                // if succesful show message and go to next Activity
                                 Toast.makeText(LogInActivity.this, "Succesfully logged in as " + email1,
                                         Toast.LENGTH_SHORT).show();
                                 searchScreen();
@@ -82,6 +85,7 @@ public class LogInActivity extends AppCompatActivity {
                     });
         }
     }
+    // goes to searchActivity
     public void searchScreen(){
 
         Intent search = new Intent(this, SearchActivity.class);
@@ -89,6 +93,7 @@ public class LogInActivity extends AppCompatActivity {
         finish();
     }
 
+    // goes to registerActivity
     public void goToRegister(View view){
         Intent goToRegisterIntent = new Intent(this, MainActivity.class);
         startActivity(goToRegisterIntent);

@@ -39,11 +39,10 @@ public class FoundItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_found_items);
 
-        // Initialize views
+        // initialize views
         listView = (ListView) findViewById(R.id.list_view);
 
         setListener();
-
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         songArray = (FoundLyrics[]) bundle.getSerializable("data");
@@ -58,9 +57,10 @@ public class FoundItemsActivity extends AppCompatActivity {
 
     }
 
+    // makes ArrayAdapter and sets places arrayItems in list
     public void makeTrackAdapter(){
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>
-                (this,android.R.layout.simple_list_item_1,android.R.id.text1, fulltitleArray);
+                (this,android.R.layout.simple_list_item_1,android.R.id.text1, fullTitleArray);
 
         listView = (ListView) findViewById(R.id.list_view);
         assert listView != null;
@@ -72,23 +72,24 @@ public class FoundItemsActivity extends AppCompatActivity {
 
                 // Receive the strings at the clicked position
                 String lv = listView.getItemAtPosition(position).toString();
-                String nameartist = nameArray.get(position);
-                String titlesong = titleArray.get(position);
+                String nameArtist = nameArray.get(position);
+                String titleSong = titleArray.get(position);
 
 
                 // Launching new Activity
                 Intent i = new Intent(getApplicationContext(),WholeLyricActivity.class);
 
                 // Sending data to new Activity
-                i.putExtra("listview", lv);
-                i.putExtra("artist", nameartist);
-                i.putExtra("song", titlesong);
+                i.putExtra("listView", lv);
+                i.putExtra("artist", nameArtist);
+                i.putExtra("song", titleSong);
                 startActivity(i);
             }
         });
 
     }
 
+    // checks if user in logged in
     public void setListener(){
 
         authStateListenerTest = new FirebaseAuth.AuthStateListener() {
@@ -108,10 +109,10 @@ public class FoundItemsActivity extends AppCompatActivity {
         };
     }
 
+    // goes to LogInActivity
     public void goToMain(){
         Intent Main = new Intent(this, MainActivity.class);
         startActivity(Main);
         finish();
     }
-
 }
