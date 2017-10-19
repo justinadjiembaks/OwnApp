@@ -38,27 +38,31 @@ public class SearchActivity extends AppCompatActivity {
         textEt = (EditText) findViewById(R.id.Edittext1);
     }
 
-    // pressing back button closes app
+
     @Override
+    // pressing back closes the app
     public void onBackPressed() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
+    // pressing favourites goes to favourites
     public void favourites(View view) {
         Intent favouritesIntent = new Intent(this, RememberedActivity.class);
         startActivity(favouritesIntent);
     }
 
+    // pressing search
     public void trackSearch(View view) {
         String trackSearch = textEt.getText().toString();
 
+        // checks if characters are placed in editText
         if (trackSearch.equals("")) {
             Toast.makeText(this.getApplicationContext(), "Please insert at least one character",
                     Toast.LENGTH_SHORT).show();
 
+            // if there is input start TrackAsyncTask
         } else {
             TrackAsyncTask asyncTask = new TrackAsyncTask(this);
             asyncTask.execute(trackSearch);
@@ -66,6 +70,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    // goes to FoundItemsActivity and gives extra data to new Activity
     public void trackStartIntent(FoundLyrics[] trackData) {
         Intent dataIntent = new Intent(this, FoundItemsActivity.class);
 
@@ -76,6 +81,7 @@ public class SearchActivity extends AppCompatActivity {
         this.startActivity(dataIntent);
     }
 
+    // when pressed logOut: log out and go to LoginActivity
     public void logOut(View view){
         Intent logoutIntent = new Intent(this,LogInActivity.class);
         startActivity(logoutIntent);
@@ -85,6 +91,8 @@ public class SearchActivity extends AppCompatActivity {
         finish();
 
     }
+
+    // checks if user is still logged in
     public void setListener(){
 
         authStateListenerTest = new FirebaseAuth.AuthStateListener() {
@@ -98,12 +106,13 @@ public class SearchActivity extends AppCompatActivity {
                 }else{
                     // User is signet out
                     Log.d(TAG,"onAuthStateChanged:signed_out");
+                    // goes automatic to LogInActivity
                     goToLogin();
                 }
             }
         };
     }
-
+    // goes to LogInActivity
     public void goToLogin(){
         Intent Login = new Intent(this, LogInActivity.class);
         startActivity(Login);

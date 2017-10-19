@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mAuth = FirebaseAuth.getInstance();
+
+        // checks if user is logged in
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -52,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    // button to go to LogInActivity
     public void goToLogIn(View view){
         Intent logInIntent = new Intent(this,LogInActivity.class);
         startActivity(logInIntent);
         finish();
     }
-
+    // When registered corectly goes automatic to LogInActivity
     public void goToLogIn1(){
         Intent logInIntent = new Intent(this,LogInActivity.class);
         startActivity(logInIntent);
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // when pressed on register
     public void createUser(View view){
 
         EditText etEmail = (EditText) findViewById(R.id.editemail);
@@ -85,29 +88,29 @@ public class MainActivity extends AppCompatActivity {
         email = etEmail.getText().toString();
         password = etPassword.getText().toString();
 
+        // checks if password is under 6 characters and gives error when is'nt
         if (password.length()<6){
             Toast.makeText(MainActivity.this, "Password must be longer than 5 characters",
                     Toast.LENGTH_SHORT).show();
         }else {
+            // if password is longer than 5 characters
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Log.d("Create user", "createUserWithEmail:onComplete:" + task.isSuccessful());
 
-
+                            // if registration is succesful
                             if (!task.isSuccessful()) {
                                 Toast.makeText(MainActivity.this, "Created New User Failed",
                                         Toast.LENGTH_SHORT).show();
-
+                            // if registration is not succesful
                             } else {
                                 Toast.makeText(MainActivity.this, "Created user " + email,
                                         Toast.LENGTH_SHORT).show();
                                 goToLogIn1();
 
                             }
-
-                            // ...
                         }
                     });
         }

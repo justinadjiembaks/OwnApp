@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class WholeLyricActivity extends AppCompatActivity {
 
+    // enables the use of Firebase
     private FirebaseAuth authTest;
     private FirebaseAuth.AuthStateListener authStateListenerTest;
     private static final String TAG = "firebase_test";
@@ -61,9 +62,12 @@ public class WholeLyricActivity extends AppCompatActivity {
 
 
     }
+    // When return button is pressed, go to last Activity
         public void back(View v){
+
             onBackPressed();
     }
+    // when add to favourites is pressed
         public void saveSong(View v){
             // Add to database
             FavouriteSongs favouriteSongs = new FavouriteSongs(number,artist,song);
@@ -71,10 +75,13 @@ public class WholeLyricActivity extends AppCompatActivity {
             String numberText = String.valueOf(newCounter.counter);
             mDatabase.child("All").child(numberText).setValue(favouriteSongs);
             mDatabase.child("Here").setValue(newCounter.counter);
+
+            // start RememberActivity
             Intent saveIntent = new Intent(getApplicationContext(),RememberedActivity.class);
             startActivity(saveIntent);
         }
 
+    // when Log out is pressed , log out and go to LogInActivity
     public void logOut1(View view){
         Intent logoutIntent = new Intent(this,LogInActivity.class);
         startActivity(logoutIntent);
@@ -82,6 +89,8 @@ public class WholeLyricActivity extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    // checks is user is logged in
     public void setListener(){
 
         authStateListenerTest = new FirebaseAuth.AuthStateListener() {
@@ -95,26 +104,33 @@ public class WholeLyricActivity extends AppCompatActivity {
                 }else{
                     // User is signet out
                     Log.d(TAG,"onAuthStateChanged:signed_out");
+
+                    // when isn't logged in go to LogInActivity automatically
                     goToLogin();
                 }
             }
         };
     }
 
+    // goes to LogInActivity
     public void goToLogin(){
         Intent Login= new Intent(this, LogInActivity.class);
         startActivity(Login);
         finish();
     }
 
+    // gets data from database
     public void getFromDB(){
-
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get our object out of the database
                 Counter getCounter = dataSnapshot.child("Here").getValue(Counter.class);
+
+                // gets amount of favourite items
                 number = getCounter.counter;
+
+                // sets new number ready for new favourite song input
                 number += 1;
             }
 

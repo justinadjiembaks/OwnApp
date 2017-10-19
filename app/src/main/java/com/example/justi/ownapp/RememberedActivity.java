@@ -30,6 +30,7 @@ public class RememberedActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     int number;
 
+    //  create arrays for data receivement about artist and song
     ArrayList<String> favouritesArtistArray;
     ArrayList<String> favouritesSongArray;
     ListView listView1;
@@ -53,6 +54,7 @@ public class RememberedActivity extends AppCompatActivity {
         makeTrackAdapter();
     }
 
+    // checks if user is logged in
     public void setListener(){
 
         authStateListenerTest = new FirebaseAuth.AuthStateListener() {
@@ -64,29 +66,32 @@ public class RememberedActivity extends AppCompatActivity {
                     //User is singed in
                     Log.d(TAG, "onAuthStateChanged:signed_in: " + user.getUid());
                 }else{
-                    // User is signet out
+                    // User is signed out go to login page
                     Log.d(TAG,"onAuthStateChanged:signed_out");
                     goToLogin();
                 }
             }
         };
     }
-
+    // intent to go to login page when user is not logged in
     public void goToLogin(){
         Intent Login = new Intent(this, LogInActivity.class);
         startActivity(Login);
         finish();
     }
-    public void getFromDB(){
 
+    // gets how many favourite songs in database are stored
+    public void getFromDB(){
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get our object out of the database
                 Counter getCounter = dataSnapshot.child("Here").getValue(Counter.class);
+
+                // makes int number the amount of favourite songs
                 number = getCounter.counter;
             }
-
+            // when is failed to receive data
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w(TAG,"Failed to get data from Database", databaseError.toException());
@@ -95,21 +100,28 @@ public class RememberedActivity extends AppCompatActivity {
 
         mDatabase.addValueEventListener(postListener);
     }
+
+    // gets artist and songs from database and stores in array
     public void getFromDB2(final int var){
 
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                // for the amount of favourtes: loop trough all
                 for (int i = 0 ;(i < var);i++) {
+
                     // Get our object out of the database
                     FavouriteSongs favouriteSongs = dataSnapshot.child("All").child(String.valueOf(i)).getValue(FavouriteSongs.class);
                     String artist = favouriteSongs.getTheName();
                     String song = favouriteSongs.getTheTitle();
+
+                    // add to arrays
                     favouritesArtistArray.add(artist);
                     favouritesSongArray.add(song);
                 }
             }
+            // when failed to receive data from database give error
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w(TAG,"Failed to get data from Database", databaseError.toException());
@@ -117,6 +129,8 @@ public class RememberedActivity extends AppCompatActivity {
         };
         mDatabase.addValueEventListener(postListener);
     }
+
+    // sets layout listview to values of arrayadapter
     public void makeTrackAdapter() {
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_list_item_1, android.R.id.text1, favouritesArtistArray);
