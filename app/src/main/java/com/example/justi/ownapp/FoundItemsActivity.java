@@ -29,7 +29,7 @@ public class FoundItemsActivity extends AppCompatActivity {
 
     FoundLyrics [] songArray;
     ListView listView;
-    ArrayList<String> fulltitleArray = new ArrayList<String>();
+    ArrayList<String> fullTitleArray = new ArrayList<String>();
     ArrayList<String> nameArray = new ArrayList<String>();
     ArrayList<String> titleArray = new ArrayList<String>();
 
@@ -49,7 +49,7 @@ public class FoundItemsActivity extends AppCompatActivity {
         songArray = (FoundLyrics[]) bundle.getSerializable("data");
 
         for (FoundLyrics lyrics : songArray) {
-            fulltitleArray.add(lyrics.getFull_title());
+            fullTitleArray.add(lyrics.getFull_title());
             nameArray.add(lyrics.getTheName());
             titleArray.add(lyrics.getTheTitle());
         }

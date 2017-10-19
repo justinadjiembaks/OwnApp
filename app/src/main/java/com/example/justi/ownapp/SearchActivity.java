@@ -48,8 +48,8 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void favourites(View view) {
-        Intent favouritesintent = new Intent(this, RememberedActivity.class);
-        startActivity(favouritesintent);
+        Intent favouritesIntent = new Intent(this, RememberedActivity.class);
+        startActivity(favouritesIntent);
     }
 
     public void trackSearch(View view) {

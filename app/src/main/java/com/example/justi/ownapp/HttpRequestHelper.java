@@ -22,11 +22,11 @@ public class HttpRequestHelper {
         String chosenTag = params[0];
 
         String token = "hP9UVyGHrlKyRJigLqmxWNnjJSnYIbXPJvem609pzv83VRtY4PUQ-kiRD2hkUao1";
-        String urlgenius = ("https://api.genius.com/search?access_token=" + token + "&q=" + chosenTag);
+        String urlGenius = ("https://api.genius.com/search?access_token=" + token + "&q=" + chosenTag);
 
         URL url = null;
         try {
-            url = new URL(urlgenius);
+            url = new URL(urlGenius);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

@@ -21,7 +21,7 @@ import com.google.firebase.storage.StorageReference;
 
 /**
  * Created by justi on 18-10-2017.
- * Activity for registering new users
+ * Activity for registering new users.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void createUser(View view){
 
-        EditText etemail = (EditText) findViewById(R.id.editemail);
-        EditText etpassword = (EditText)findViewById(R.id.editpassword);
-        email = etemail.getText().toString();
-        password = etpassword.getText().toString();
+        EditText etEmail = (EditText) findViewById(R.id.editemail);
+        EditText etPassword = (EditText)findViewById(R.id.editpassword);
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
 
         if (password.length()<6){
             Toast.makeText(MainActivity.this, "Password must be longer than 5 characters",

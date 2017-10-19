@@ -67,10 +67,10 @@ public class WholeLyricActivity extends AppCompatActivity {
         public void saveSong(View v){
             // Add to database
             FavouriteSongs favouriteSongs = new FavouriteSongs(number,artist,song);
-            Counter newcounter = new Counter(number);
-            String numbertext = String.valueOf(newcounter.counter);
-            mDatabase.child("All").child(numbertext).setValue(favouriteSongs);
-            mDatabase.child("Here").setValue(newcounter.counter);
+            Counter newCounter = new Counter(number);
+            String numberText = String.valueOf(newCounter.counter);
+            mDatabase.child("All").child(numberText).setValue(favouriteSongs);
+            mDatabase.child("Here").setValue(newCounter.counter);
             Intent saveIntent = new Intent(getApplicationContext(),RememberedActivity.class);
             startActivity(saveIntent);
         }

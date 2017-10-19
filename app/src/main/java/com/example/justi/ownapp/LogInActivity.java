@@ -48,10 +48,10 @@ public class LogInActivity extends AppCompatActivity {
     }
     public void logIn(View view){
 
-        EditText et1mail = (EditText) findViewById(R.id.editemail1);
-        EditText et1password= (EditText)findViewById(R.id.editpassword1);
-        email1 = et1mail.getText().toString();
-        password1 = et1password.getText().toString();
+        EditText et1Email = (EditText) findViewById(R.id.editemail1);
+        EditText et1Password= (EditText)findViewById(R.id.editpassword1);
+        email1 = et1Email.getText().toString();
+        password1 = et1Password.getText().toString();
 
         if (email1.isEmpty() || password1.isEmpty()){
             Toast.makeText(LogInActivity.this, "Email and/or Password is/are not filled in" ,
@@ -72,9 +72,9 @@ public class LogInActivity extends AppCompatActivity {
                                 Toast.makeText(LogInActivity.this, "Failed",
                                         Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(LogInActivity.this, "Succesfuly logged in as " + email1,
+                                Toast.makeText(LogInActivity.this, "Succesfully logged in as " + email1,
                                         Toast.LENGTH_SHORT).show();
-                                searchscreen();
+                                searchScreen();
                             }
 
                             // ...
@@ -82,7 +82,7 @@ public class LogInActivity extends AppCompatActivity {
                     });
         }
     }
-    public void searchscreen(){
+    public void searchScreen(){
 
         Intent search = new Intent(this, SearchActivity.class);
         startActivity(search);
@@ -90,8 +90,8 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void goToRegister(View view){
-        Intent gotoregisterIntent = new Intent(this, MainActivity.class);
-        startActivity(gotoregisterIntent);
+        Intent goToRegisterIntent = new Intent(this, MainActivity.class);
+        startActivity(goToRegisterIntent);
         finish();
     }
 }
